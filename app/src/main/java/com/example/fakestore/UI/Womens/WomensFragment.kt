@@ -39,6 +39,11 @@ class WomensFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         requireActivity().backpress(0L, viewLifecycleOwner)
 
-        viewModel.getWomen()
+        viewModel.storeModelItem.observe(viewLifecycleOwner, {
+            item->
+            item.forEach {
+                println(it.image)
+            }
+        })
     }
 }
