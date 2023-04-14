@@ -5,9 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.fakestore.R
+import com.example.fakestore.databinding.FragmentElectronicsBinding
 
 class ElectronicsFragment : Fragment() {
+
+    private lateinit var binding : FragmentElectronicsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -16,8 +18,8 @@ class ElectronicsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_electronics, container, false)
+    ): View {
+        binding = FragmentElectronicsBinding.inflate(inflater, container, false)
+        return binding.root
     }
 }

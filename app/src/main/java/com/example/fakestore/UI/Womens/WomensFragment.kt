@@ -6,8 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.fakestore.R
+import com.example.fakestore.databinding.FragmentMensBinding
+import com.example.fakestore.databinding.FragmentWomensBinding
 
 class WomensFragment : Fragment() {
+
+    private lateinit var binding: FragmentWomensBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -15,8 +20,8 @@ class WomensFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_womens, container, false)
+    ): View {
+        binding = FragmentWomensBinding.inflate(inflater, container, false)
+        return binding.root
     }
 }
