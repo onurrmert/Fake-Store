@@ -6,9 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.fakestore.R
+import com.example.fakestore.Util.Extension.Companion.backpress
 import com.example.fakestore.databinding.FragmentMensBinding
 import com.example.fakestore.databinding.FragmentWomensBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class WomensFragment : Fragment() {
 
     private lateinit var binding: FragmentWomensBinding
@@ -23,5 +26,10 @@ class WomensFragment : Fragment() {
     ): View {
         binding = FragmentWomensBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        requireActivity().backpress(0L, viewLifecycleOwner)
     }
 }

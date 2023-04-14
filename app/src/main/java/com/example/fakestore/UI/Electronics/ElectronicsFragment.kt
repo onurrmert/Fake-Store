@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.fakestore.Util.Extension.Companion.backpress
 import com.example.fakestore.databinding.FragmentElectronicsBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ElectronicsFragment : Fragment() {
 
     private lateinit var binding : FragmentElectronicsBinding
@@ -26,7 +28,6 @@ class ElectronicsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         requireActivity().backpress(0L, viewLifecycleOwner)
     }
 }
