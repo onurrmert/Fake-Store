@@ -5,11 +5,9 @@
     android:layout_height="match_parent"
     tools:context=".UI.Jewelery.JeweleryFragment">
 
-    <TextView
-        android:gravity="center"
-        android:textSize="30dp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        tools:listitem="@layout/recycler_rows"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="JeweleryFragment" />
-
+        android:layout_height="match_parent" />
 </FrameLayout>

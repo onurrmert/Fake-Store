@@ -6,7 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
-import com.example.fakestore.UI.Womens.WomenViewModel
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.fakestore.UI.Adapter.MyRecyclerAdapter
 import com.example.fakestore.Util.Extension.Companion.backpress
 import com.example.fakestore.databinding.FragmentElectronicsBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -35,5 +36,16 @@ class ElectronicsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         requireActivity().backpress(0L, viewLifecycleOwner)
+        initRecycler()
+    }
+
+    private fun initRecycler(){
+        viewModel.storeModelItem.observe(viewLifecycleOwner, {
+                item->
+            if (item.size > 0){
+                binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+                binding.recyclerView.adapter = MyRecyclerAdapter(item)
+            }
+        })
     }
 }
