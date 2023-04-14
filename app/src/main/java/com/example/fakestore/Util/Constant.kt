@@ -8,5 +8,6 @@ class Constant {
         const val ElectricUrl = "electronics"
         const val WomenUrl = "women's clothing"
         const val JeweleryUrl = "jewelery"
+        const val ProductUrl = "products/"
     }
 }
