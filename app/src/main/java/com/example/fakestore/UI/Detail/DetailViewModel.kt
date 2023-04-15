@@ -4,6 +4,7 @@ import android.content.SharedPreferences
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.fakestore.Data.local.Entity.StoreEntity
 import com.example.fakestore.Data.remote.Model.StoreModel
 import com.example.fakestore.Data.remote.Model.StoreModelItem
 import com.example.fakestore.Domain.DatabaseUseCase
@@ -25,6 +26,12 @@ class DetailViewModel @Inject constructor(
     fun getOneData(id : Int){
         viewModelScope.launch {
             _storeModelItem.value = apiUseCase.getOneData(id)
+        }
+    }
+
+    fun insert(id: Int){
+        viewModelScope.launch {
+            databaseUseCase.insert(StoreEntity(id))
         }
     }
 }

@@ -22,6 +22,7 @@ import com.example.fakestore.Data.remote.Model.StoreModelItem
 import com.example.fakestore.MainActivity
 import com.example.fakestore.R
 import com.example.fakestore.UI.Mens.MensFragment
+import com.example.fakestore.UI.Product.ProductActivity
 import com.example.fakestore.databinding.ActivityDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -57,6 +58,7 @@ class DetailActivity : AppCompatActivity() {
             AlertDialog.Builder(this@DetailActivity).apply {
                 this.setMessage("Do you want to add product to cart?")
                 this.setPositiveButton("Yes", DialogInterface.OnClickListener { dialog, which ->
+                    viewModel.insert(getID())
                     sendNotification()
                 })
             }.show()
@@ -66,7 +68,7 @@ class DetailActivity : AppCompatActivity() {
     @SuppressLint("UnspecifiedImmutableFlag")
     private fun notificationBuilder(){
 
-        val fullScreenIntent = Intent(this, MainActivity::class.java)
+        val fullScreenIntent = Intent(this, ProductActivity::class.java)
 
         fullScreenIntent.putExtra("id", getID())
 
@@ -111,7 +113,7 @@ class DetailActivity : AppCompatActivity() {
     private fun getData(){
         viewModel.storeModelItem.observe(this, {
                 item->
-            initUI(item)
+                initUI(item)
         })
     }
 

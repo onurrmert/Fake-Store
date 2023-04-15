@@ -10,18 +10,9 @@ data class StoreEntity(
     @ColumnInfo(name = "id")
     val id : Int,
 
-    @ColumnInfo(name = "description")
-    val description: String?,
-
     @ColumnInfo(name = "idStore")
     val idStore: Int?,
 
-    @ColumnInfo(name = "image")
-    val image: String?,
-
-    @ColumnInfo(name = "price")
-    val price: Double?,
-
-    @ColumnInfo(name = "title")
-    val title: String?
-)
+){
+    constructor(idStore: Int?) : this(0, idStore)
+}
