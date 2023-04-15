@@ -1,5 +1,6 @@
 package com.example.fakestore.UI.Womens
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -28,7 +29,11 @@ class WomenViewModel @Inject constructor(
 
     fun getWomen(){
         viewModelScope.launch {
-            _storeModelItem.value = storeApiUseCase.getCategory(WomenUrl)
+            try {
+                _storeModelItem.value = storeApiUseCase.getCategory(Constant.MensUrl)
+            }catch (e : Exception){
+                Log.e("getWomen error: " , e.localizedMessage)
+            }
         }
     }
 }

@@ -40,7 +40,7 @@ class ElectronicsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         requireActivity().backpress(0L, viewLifecycleOwner)
-        initRecycler()
+        //initRecycler()
     }
 
     private fun initRecycler(){

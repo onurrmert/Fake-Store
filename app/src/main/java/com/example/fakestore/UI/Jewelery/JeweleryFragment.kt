@@ -13,6 +13,8 @@ import com.example.fakestore.UI.Adapter.RecyclerView.IOnItemClick
 import com.example.fakestore.UI.Adapter.RecyclerView.MyRecyclerAdapter
 import com.example.fakestore.UI.Detail.DetailActivity
 import com.example.fakestore.Util.Extension.Companion.backpress
+import com.example.fakestore.Util.Extension.Companion.connectionControl
+import com.example.fakestore.Util.Extension.Companion.toast
 import com.example.fakestore.databinding.FragmentJeweleryBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -40,7 +42,27 @@ class JeweleryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         requireActivity().backpress(0L, viewLifecycleOwner)
-        initRecycler()
+        checkConnection()
+    }
+
+    private fun checkConnection(){
+        if (requireContext().connectionControl() == true){
+            initRecycler()
+            goneAnim()
+        }else{
+            visibleAnim()
+            requireContext().toast("Check your internet connection")
+        }
+    }
+
+    private fun visibleAnim(){
+        binding.animateToStart.visibility = View.VISIBLE
+        binding.recyclerView.visibility = View.GONE
+    }
+
+    private fun goneAnim(){
+        binding.animateToStart.visibility = View.GONE
+        binding.recyclerView.visibility = View.VISIBLE
     }
 
     private fun initRecycler(){
@@ -48,6 +70,9 @@ class JeweleryFragment : Fragment() {
                 item->
             if (item.size > 0){
                 recyclerClick(item)
+                goneAnim()
+            }else{
+                visibleAnim()
             }
         })
     }

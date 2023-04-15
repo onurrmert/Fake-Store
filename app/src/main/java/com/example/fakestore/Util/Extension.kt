@@ -1,6 +1,7 @@
 package com.example.fakestore.Util
 
 import android.content.Context
+import android.net.ConnectivityManager
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.FragmentActivity
@@ -24,6 +25,18 @@ class Extension {
                         backTime = System.currentTimeMillis()
                     }
                 })
+        }
+
+        fun Context.connectionControl() : Boolean{
+            val manager =
+                this.applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+            val networkInfo = manager.activeNetworkInfo
+
+            if (networkInfo == null) {
+                return false// is not connect internet
+            }else{
+                return true// connect internet
+            }
         }
     }
 }

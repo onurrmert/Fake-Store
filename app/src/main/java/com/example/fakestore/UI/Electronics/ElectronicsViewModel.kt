@@ -1,5 +1,6 @@
 package com.example.fakestore.UI.Electronics
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -28,7 +29,11 @@ class ElectronicsViewModel @Inject constructor(
 
     fun getElectronics(){
         viewModelScope.launch {
-            _storeModelItem.value = storeApiUseCase.getCategory(ElectricUrl)
+            try {
+                _storeModelItem.value = storeApiUseCase.getCategory(Constant.MensUrl)
+            }catch (e : Exception){
+                Log.e("getElectronics error: " , e.localizedMessage)
+            }
         }
     }
 }

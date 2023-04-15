@@ -1,10 +1,12 @@
 package com.example.fakestore.UI.Jewelery
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.fakestore.Data.Model.StoreModel
 import com.example.fakestore.Domain.StoreApiUseCase
+import com.example.fakestore.Util.Constant
 import com.example.fakestore.Util.Constant.Companion.JeweleryUrl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
@@ -27,7 +29,11 @@ class JeweleryViewModel @Inject constructor(
 
     fun getJewelery(){
         viewModelScope.launch {
-            _storeModelItem.value = storeApiUseCase.getCategory(JeweleryUrl)
+            try {
+                _storeModelItem.value = storeApiUseCase.getCategory(Constant.MensUrl)
+            }catch (e : Exception){
+                Log.e("getJewelery error: " , e.localizedMessage)
+            }
         }
     }
 }

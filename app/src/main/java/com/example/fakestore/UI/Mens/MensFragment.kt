@@ -48,6 +48,11 @@ class MensFragment : Fragment() {
                 item->
             if (item.size > 0){
                 recyclerClick(item)
+                binding.animateToStart.visibility = View.GONE
+                binding.recyclerView.visibility = View.VISIBLE
+            }else{
+                binding.animateToStart.visibility = View.VISIBLE
+                binding.recyclerView.visibility = View.GONE
             }
         })
     }
