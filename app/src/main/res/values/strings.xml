@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">FakeStore</string>
+    <string name="app_name">Fake Store</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="descriptionText">Product added to cart</string>
 </resources>
