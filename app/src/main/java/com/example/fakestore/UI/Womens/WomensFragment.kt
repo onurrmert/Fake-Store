@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.fakestore.Data.Model.StoreModel
+import com.example.fakestore.Data.remote.Model.StoreModel
 import com.example.fakestore.UI.Adapter.RecyclerView.IOnItemClick
 import com.example.fakestore.UI.Adapter.RecyclerView.MyRecyclerAdapter
 import com.example.fakestore.UI.Detail.DetailActivity

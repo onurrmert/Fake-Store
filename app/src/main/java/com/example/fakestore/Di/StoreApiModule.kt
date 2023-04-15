@@ -1,8 +1,8 @@
 package com.example.fakestore.Di
 
-import com.example.fakestore.Data.Api.IStoreApi
-import com.example.fakestore.Data.Repository.StoreApiRepository
-import com.example.fakestore.Data.Repository.StoreApiRespositoryImpl
+import com.example.fakestore.Data.remote.Api.IStoreApi
+import com.example.fakestore.Data.remote.Repository.StoreApiRepository
+import com.example.fakestore.Data.remote.Repository.StoreApiRespositoryImpl
 import com.example.fakestore.Util.Constant.Companion.BaseUrl
 import com.google.gson.GsonBuilder
 import dagger.Module

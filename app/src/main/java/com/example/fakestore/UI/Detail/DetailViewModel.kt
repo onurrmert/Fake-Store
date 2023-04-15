@@ -1,10 +1,12 @@
 package com.example.fakestore.UI.Detail
 
+import android.content.SharedPreferences
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.fakestore.Data.Model.StoreModel
-import com.example.fakestore.Data.Model.StoreModelItem
+import com.example.fakestore.Data.remote.Model.StoreModel
+import com.example.fakestore.Data.remote.Model.StoreModelItem
+import com.example.fakestore.Domain.DatabaseUseCase
 import com.example.fakestore.Domain.StoreApiUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -12,7 +14,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DetailViewModel @Inject constructor(
-    private val apiUseCase: StoreApiUseCase
+    private val apiUseCase: StoreApiUseCase,
+    private val databaseUseCase: DatabaseUseCase
 ) : ViewModel() {
 
     private val _storeModelItem = MutableLiveData<StoreModelItem>()

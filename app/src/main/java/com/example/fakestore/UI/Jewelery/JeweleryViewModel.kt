@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.fakestore.Data.Model.StoreModel
+import com.example.fakestore.Data.remote.Model.StoreModel
 import com.example.fakestore.Domain.StoreApiUseCase
 import com.example.fakestore.Util.Constant
 import com.example.fakestore.Util.Constant.Companion.JeweleryUrl

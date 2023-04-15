@@ -18,7 +18,7 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
-import com.example.fakestore.Data.Model.StoreModelItem
+import com.example.fakestore.Data.remote.Model.StoreModelItem
 import com.example.fakestore.MainActivity
 import com.example.fakestore.R
 import com.example.fakestore.UI.Mens.MensFragment
@@ -65,8 +65,11 @@ class DetailActivity : AppCompatActivity() {
 
     @SuppressLint("UnspecifiedImmutableFlag")
     private fun notificationBuilder(){
+
         val fullScreenIntent = Intent(this, MainActivity::class.java)
+
         fullScreenIntent.putExtra("id", getID())
+
         val fullScreenPendingIntent = PendingIntent.getActivity(this, 0,
             fullScreenIntent, PendingIntent.FLAG_UPDATE_CURRENT)
 

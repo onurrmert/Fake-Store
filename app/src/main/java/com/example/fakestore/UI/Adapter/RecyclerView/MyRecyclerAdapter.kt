@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.fakestore.Data.Model.StoreModel
+import com.example.fakestore.Data.remote.Model.StoreModel
 import com.example.fakestore.R
 import com.example.fakestore.databinding.RecyclerRowsBinding
 

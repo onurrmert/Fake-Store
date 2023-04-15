@@ -4,7 +4,6 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
@@ -18,6 +17,9 @@
         android:theme="@style/Theme.FakeStore"
         tools:targetApi="31">
         <activity
+            android:name=".UI.Product.ProductActivity"
+            android:exported="false" />
+        <activity
             android:name=".UI.Detail.DetailActivity"
             android:exported="false" />
         <activity
@@ -30,4 +32,5 @@
             </intent-filter>
         </activity>
     </application>
+
 </manifest>

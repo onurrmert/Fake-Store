@@ -1,4 +1,4 @@
-package com.example.fakestore.Data.Model
+package com.example.fakestore.Data.remote.Model
 
 data class StoreModelItem(
     val category: String?,
