@@ -1,4 +1,4 @@
-package com.example.fakestore.UI.Adapter
+package com.example.fakestore.UI.Adapter.RecyclerView
 
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +10,8 @@ import com.example.fakestore.R
 import com.example.fakestore.databinding.RecyclerRowsBinding
 
 class MyRecyclerAdapter (
-    private val storeModel: StoreModel
+    private val storeModel: StoreModel,
+    private val itemClick: IOnItemClick
     ): RecyclerView.Adapter<MyRecyclerAdapter.RecyclerViewHolder>(){
 
     inner class RecyclerViewHolder(view: View) : RecyclerView.ViewHolder(view){
@@ -33,9 +34,15 @@ class MyRecyclerAdapter (
 
         holder.binding.textPrice.text = storeModel.get(position).price.toString()
 
+        holder.binding.textTitle.text = storeModel.get(position).title.toString()
+
         Glide.with(holder.itemView.context)
             .load(storeModel.get(position).image)
             .error(R.drawable.ic_launcher_foreground)
             .into(holder.binding.imageView)
+
+        holder.binding.imageView.setOnClickListener {
+            itemClick.itemClick(storeModel.get(position).id!!)
+        }
     }
 }

@@ -3,14 +3,13 @@ package com.example.fakestore
 import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.fakestore.UI.Adapter.ViewPagerAdapter
+import com.example.fakestore.UI.Adapter.ViewPager.ViewPagerAdapter
 import com.example.fakestore.UI.Electronics.ElectronicsFragment
 import com.example.fakestore.UI.Jewelery.JeweleryFragment
 import com.example.fakestore.UI.Mens.MensFragment
 import com.example.fakestore.UI.Womens.WomensFragment
 import com.example.fakestore.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
-
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {

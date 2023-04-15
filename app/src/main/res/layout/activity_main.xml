@@ -17,14 +17,15 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-                <com.google.android.material.tabs.TabLayout
-                    android:id="@+id/tabLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:tabGravity="fill"
-                    app:tabTextAppearance="@style/tabStyle"
-                    app:tabMode="fixed"
-                    />
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:tabGravity="fill"
+                android:background="#DCC3C3"
+                app:tabTextAppearance="@style/tabStyle"
+                app:tabMode="fixed"
+                />
         </LinearLayout>
     </ScrollView>
 
