@@ -1,36 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.cardview.widget.CardView
     android:id="@+id/recyclerRow"
     android:padding="10dp"
+    android:layout_gravity="fill"
+    android:foregroundGravity="fill"
+    android:layout_weight="0"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="10dp"
     android:layout_margin="10dp"
-    android:background="@drawable/recycler_background"
-    android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/textTitle"
-        android:textSize="24sp"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="TextView" />
+        android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_gravity="center"
-        android:layout_width="370dp"
-        android:layout_height="450dp"
-        android:layout_weight="1"
-        app:srcCompat="@drawable/ic_launcher_background" />
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="370dp"
+            android:layout_height="416dp"
+            android:layout_gravity="center"
+            android:layout_margin="0dp"
+            android:padding="0dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/ic_launcher_background" />
 
-    <TextView
-        android:id="@+id/textPrice"
-        android:textSize="24sp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="TextView" />
-</LinearLayout>
+        <TextView
+            android:id="@+id/textPrice"
+            android:textSize="24sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@color/dark_blue"
+            android:text="" />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

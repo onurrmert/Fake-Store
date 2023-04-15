@@ -1,5 +1,6 @@
 package com.example.fakestore.UI.Adapter.RecyclerView
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,11 +31,10 @@ class MyRecyclerAdapter (
         return storeModel.size
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: RecyclerViewHolder, position: Int) {
 
-        holder.binding.textPrice.text = storeModel.get(position).price.toString()
-
-        holder.binding.textTitle.text = storeModel.get(position).title.toString()
+        holder.binding.textPrice.text = "Price: ${storeModel.get(position).price.toString()}$"
 
         Glide.with(holder.itemView.context)
             .load(storeModel.get(position).image)

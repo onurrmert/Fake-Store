@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.fakestore.Data.Model.StoreModel
 import com.example.fakestore.Domain.StoreApiUseCase
 import com.example.fakestore.Util.Constant
+import com.example.fakestore.Util.Constant.Companion.WomenUrl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -27,7 +28,7 @@ class WomenViewModel @Inject constructor(
 
     fun getWomen(){
         viewModelScope.launch {
-            _storeModelItem.value = storeApiUseCase.getCategory(Constant.MensUrl)
+            _storeModelItem.value = storeApiUseCase.getCategory(WomenUrl)
         }
     }
 }

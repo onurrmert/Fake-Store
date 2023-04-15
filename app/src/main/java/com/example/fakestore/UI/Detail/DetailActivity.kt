@@ -2,14 +2,10 @@ package com.example.fakestore.UI.Detail
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.example.fakestore.Data.Model.StoreModelItem
 import com.example.fakestore.R
-import com.example.fakestore.UI.ViewModels.AllFragmentViewModel
 import com.example.fakestore.databinding.ActivityDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
 
