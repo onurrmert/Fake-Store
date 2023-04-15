@@ -40,13 +40,13 @@ class StoreApiModule {
 
     @Singleton
     @Provides
-    fun getDisneyApi() : IStoreApi {
+    fun getStoreApi() : IStoreApi {
         return StoreApiModule().getRetrofit().create(IStoreApi::class.java)
     }
 
     @Singleton
     @Provides
-    fun provideDisneyApiRepository(disneyApi: IStoreApi) : StoreApiRepository {
-        return StoreApiRespositoryImpl(disneyApi)
+    fun provideStoreApiRepository(storeApi: IStoreApi) : StoreApiRepository {
+        return StoreApiRespositoryImpl(storeApi)
     }
 }

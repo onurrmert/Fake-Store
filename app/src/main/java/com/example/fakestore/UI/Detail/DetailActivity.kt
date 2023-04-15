@@ -12,7 +12,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class DetailActivity : AppCompatActivity() {
 
-    private lateinit var binding : ActivityDetailBinding
+    private lateinit var binding: ActivityDetailBinding
 
     private val viewModel by lazy {
         ViewModelProvider(this, defaultViewModelProviderFactory).get(DetailViewModel::class.java)
@@ -41,8 +41,10 @@ class DetailActivity : AppCompatActivity() {
         Glide.with(this)
             .load(item.image)
             .error(R.drawable.ic_launcher_foreground)
-            .into(binding.imageView)
+            .into(binding.imageView2)
 
-        binding.textPrice.setText(item.price.toString())
+        binding.textPrice.setText("Price: ${item.price.toString()}$")
+        binding.textDescription.setText(item.description.toString())
+        binding.textTitle.setText(item.title)
     }
 }

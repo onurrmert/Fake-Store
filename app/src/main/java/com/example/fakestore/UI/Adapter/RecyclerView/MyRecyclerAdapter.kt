@@ -35,6 +35,7 @@ class MyRecyclerAdapter (
     override fun onBindViewHolder(holder: RecyclerViewHolder, position: Int) {
 
         holder.binding.textPrice.text = "Price: ${storeModel.get(position).price.toString()}$"
+        holder.binding.textTitle.setText(storeModel.get(position).title)
 
         Glide.with(holder.itemView.context)
             .load(storeModel.get(position).image)

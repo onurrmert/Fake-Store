@@ -30,7 +30,7 @@ class ElectronicsViewModel @Inject constructor(
     fun getElectronics(){
         viewModelScope.launch {
             try {
-                _storeModelItem.value = storeApiUseCase.getCategory(Constant.MensUrl)
+                _storeModelItem.value = storeApiUseCase.getCategory(ElectricUrl)
             }catch (e : Exception){
                 Log.e("getElectronics error: " , e.localizedMessage)
             }

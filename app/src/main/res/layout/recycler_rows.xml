@@ -18,6 +18,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <TextView
+            android:id="@+id/textTitle"
+            android:textSize="18sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="10dp"
+            android:textColor="@color/blue"
+            android:text="" />
+
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="370dp"
@@ -30,11 +40,12 @@
 
         <TextView
             android:id="@+id/textPrice"
-            android:textSize="24sp"
+            android:textSize="18sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textColor="@color/dark_blue"
+            android:textColor="@color/green"
+            android:padding="10dp"
             android:text="" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

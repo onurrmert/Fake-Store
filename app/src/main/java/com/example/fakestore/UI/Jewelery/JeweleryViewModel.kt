@@ -30,7 +30,7 @@ class JeweleryViewModel @Inject constructor(
     fun getJewelery(){
         viewModelScope.launch {
             try {
-                _storeModelItem.value = storeApiUseCase.getCategory(Constant.MensUrl)
+                _storeModelItem.value = storeApiUseCase.getCategory(JeweleryUrl)
             }catch (e : Exception){
                 Log.e("getJewelery error: " , e.localizedMessage)
             }

@@ -30,7 +30,7 @@ class WomenViewModel @Inject constructor(
     fun getWomen(){
         viewModelScope.launch {
             try {
-                _storeModelItem.value = storeApiUseCase.getCategory(Constant.MensUrl)
+                _storeModelItem.value = storeApiUseCase.getCategory(WomenUrl)
             }catch (e : Exception){
                 Log.e("getWomen error: " , e.localizedMessage)
             }
