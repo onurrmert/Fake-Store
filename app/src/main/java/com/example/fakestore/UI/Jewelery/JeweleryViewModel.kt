@@ -2,6 +2,7 @@ package com.example.fakestore.UI.Jewelery
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.fakestore.Data.Model.StoreModel
 import com.example.fakestore.Domain.StoreApiUseCase
 import com.example.fakestore.Util.Constant.Companion.JeweleryUrl
@@ -25,7 +26,7 @@ class JeweleryViewModel @Inject constructor(
     }
 
     fun getJewelery(){
-        CoroutineScope(Dispatchers.Main).launch {
+        viewModelScope.launch {
             _storeModelItem.value = storeApiUseCase.getCategory(JeweleryUrl)
         }
     }

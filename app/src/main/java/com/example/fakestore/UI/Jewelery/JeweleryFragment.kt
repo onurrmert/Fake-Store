@@ -58,6 +58,7 @@ class JeweleryFragment : Fragment() {
             object : IOnItemClick {
                 override fun itemClick(id: Int) {
                     val intent = Intent(activity, DetailActivity::class.java)
+                    intent.putExtra("id", id)
                     startActivity(intent)
                 }
             })

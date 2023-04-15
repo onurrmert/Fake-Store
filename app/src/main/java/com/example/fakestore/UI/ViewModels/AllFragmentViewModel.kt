@@ -2,6 +2,7 @@ package com.example.fakestore.UI.ViewModels
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.fakestore.Data.Model.StoreModel
 import com.example.fakestore.Domain.StoreApiUseCase
 import com.example.fakestore.Util.Constant
@@ -21,7 +22,7 @@ class AllFragmentViewModel @Inject constructor(
     val storeModelItem : MutableLiveData<StoreModel> get() = _storeModelItem
 
     fun getWomen(category : String){
-        CoroutineScope(Dispatchers.Main).launch {
+        viewModelScope.launch {
             _storeModelItem.value = storeApiUseCase.getCategory(category)
         }
     }

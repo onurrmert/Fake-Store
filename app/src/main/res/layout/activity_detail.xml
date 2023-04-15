@@ -6,14 +6,43 @@
     android:layout_height="match_parent"
     tools:context=".UI.Detail.DetailActivity">
 
-    <TextView
-        android:id="@+id/textView"
-        android:textSize="28sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="133dp"
-        android:text="Detail"
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="TextView"
+            android:textSize="24sp" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="370dp"
+            android:layout_height="450dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/ic_launcher_background" />
+
+        <TextView
+            android:id="@+id/textPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="TextView"
+            android:textSize="24sp" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,7 +1,9 @@
 package com.example.fakestore.UI.Womens
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.provider.ContactsContract.Contacts
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +15,8 @@ import com.example.fakestore.UI.Adapter.RecyclerView.IOnItemClick
 import com.example.fakestore.UI.Adapter.RecyclerView.MyRecyclerAdapter
 import com.example.fakestore.UI.Detail.DetailActivity
 import com.example.fakestore.UI.ViewModels.AllFragmentViewModel
+import com.example.fakestore.Util.Constant
+import com.example.fakestore.Util.Constant.Companion.WomenUrl
 import com.example.fakestore.Util.Extension.Companion.backpress
 import com.example.fakestore.databinding.FragmentWomensBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -24,7 +28,7 @@ class WomensFragment : Fragment() {
     private lateinit var binding: FragmentWomensBinding
 
     private val viewModel by lazy {
-        ViewModelProvider(this, defaultViewModelProviderFactory).get(AllFragmentViewModel::class.java)
+        ViewModelProvider(this, defaultViewModelProviderFactory).get(WomenViewModel::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,6 +64,7 @@ class WomensFragment : Fragment() {
             object : IOnItemClick {
                 override fun itemClick(id: Int) {
                     val intent = Intent(activity, DetailActivity::class.java)
+                    intent.putExtra("id", id)
                     startActivity(intent)
                 }
             })
