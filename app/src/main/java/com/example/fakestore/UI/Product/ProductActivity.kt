@@ -3,7 +3,8 @@ package com.example.fakestore.UI.Product
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
-import com.example.fakestore.UI.Detail.DetailViewModel
+import androidx.recyclerview.widget.GridLayoutManager
+import com.example.fakestore.Data.remote.Model.StoreModelItem
 import com.example.fakestore.databinding.ActivityProductBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -20,7 +21,11 @@ class ProductActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityProductBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        getData()
+    }
 
-        viewModel.getData()
+    private fun getData(){
+        viewModel.storeModelItemList
+
     }
 }
