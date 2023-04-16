@@ -14,7 +14,7 @@ In the application, dagger hilt was used for dependisy injection. MVVM + Clean A
 #### -ViewBinding
 #### -Glide
 #### -Coroutines
-#### -Post Notification
+#### -Notification
 #### -ViewPager
 #### -Lottie (Loading Animation)
 
