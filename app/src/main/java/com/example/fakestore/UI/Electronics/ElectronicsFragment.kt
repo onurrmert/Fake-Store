@@ -13,6 +13,7 @@ import com.example.fakestore.UI.Adapter.RecyclerView.IOnItemClick
 import com.example.fakestore.UI.Adapter.RecyclerView.MyRecyclerAdapter
 import com.example.fakestore.UI.Detail.DetailActivity
 import com.example.fakestore.Util.Extension.Companion.backpress
+import com.example.fakestore.Util.Extension.Companion.toast
 import com.example.fakestore.databinding.FragmentElectronicsBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -43,11 +44,24 @@ class ElectronicsFragment : Fragment() {
         initRecycler()
     }
 
+    private fun visibleAnim(){
+        binding.animateToStart.visibility = View.VISIBLE
+        binding.recyclerView.visibility = View.GONE
+    }
+
+    private fun goneAnim(){
+        binding.animateToStart.visibility = View.GONE
+        binding.recyclerView.visibility = View.VISIBLE
+    }
+
     private fun initRecycler(){
         viewModel.storeModelItem.observe(viewLifecycleOwner, {
                 item->
             if (item.size > 0){
                 recyclerClick(item)
+                goneAnim()
+            }else{
+                visibleAnim()
             }
         })
     }

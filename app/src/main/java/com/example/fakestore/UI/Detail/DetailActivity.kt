@@ -23,6 +23,7 @@ import com.example.fakestore.MainActivity
 import com.example.fakestore.R
 import com.example.fakestore.UI.Mens.MensFragment
 import com.example.fakestore.UI.Product.ProductActivity
+import com.example.fakestore.Util.Extension.Companion.sendNotification
 import com.example.fakestore.databinding.ActivityDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -52,57 +53,14 @@ class DetailActivity : AppCompatActivity() {
         viewModel.getOneData(getID())
         getData()
 
-        notificationBuilder()
-
         binding.floatingActionButton.setOnClickListener {
             AlertDialog.Builder(this@DetailActivity).apply {
                 this.setMessage("Do you want to add product to cart?")
                 this.setPositiveButton("Yes", DialogInterface.OnClickListener { dialog, which ->
                     viewModel.insert(getID())
-                    sendNotification()
+                    this@DetailActivity.sendNotification()
                 })
             }.show()
-        }
-    }
-
-    @SuppressLint("UnspecifiedImmutableFlag")
-    private fun notificationBuilder(){
-
-        val fullScreenIntent = Intent(this, ProductActivity::class.java)
-
-        fullScreenIntent.putExtra("id", getID())
-
-        val fullScreenPendingIntent = PendingIntent.getActivity(this, 0,
-            fullScreenIntent, PendingIntent.FLAG_UPDATE_CURRENT)
-
-        builder = NotificationCompat.Builder(this, channelId)
-            .setSmallIcon(R.drawable.baseline_shopping_cart_24)
-            .setContentTitle("Fake Store")
-            .setContentText("Product added to cart")
-            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-            .setContentIntent(fullScreenPendingIntent)
-    }
-
-    private fun sendNotification(){
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val name = getString(R.string.app_name)
-            val descriptionText = getString(R.string.descriptionText)
-            val importance = NotificationManager.IMPORTANCE_DEFAULT
-            val channel = NotificationChannel(channelId, name, importance).apply {
-                description = descriptionText
-            }
-            notificationManager.createNotificationChannel(channel)
-        }
-
-        with(NotificationManagerCompat.from(this)) {
-            if (ActivityCompat.checkSelfPermission(
-                    this@DetailActivity,
-                    Manifest.permission.POST_NOTIFICATIONS
-                ) != PackageManager.PERMISSION_GRANTED
-            ) {
-                return@with
-            }
-            notify(1234, builder.build())
         }
     }
 
@@ -113,7 +71,9 @@ class DetailActivity : AppCompatActivity() {
     private fun getData(){
         viewModel.storeModelItem.observe(this, {
                 item->
+            if (item != null){
                 initUI(item)
+            }
         })
     }
 
