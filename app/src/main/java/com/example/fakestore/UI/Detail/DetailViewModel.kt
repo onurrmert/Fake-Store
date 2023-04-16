@@ -1,15 +1,15 @@
 package com.example.fakestore.UI.Detail
 
-import android.content.SharedPreferences
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.example.fakestore.Data.local.Entity.StoreEntity
-import com.example.fakestore.Data.remote.Model.StoreModel
 import com.example.fakestore.Data.remote.Model.StoreModelItem
 import com.example.fakestore.Domain.DatabaseUseCase
 import com.example.fakestore.Domain.StoreApiUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -24,13 +24,17 @@ class DetailViewModel @Inject constructor(
     val storeModelItem : MutableLiveData<StoreModelItem> get() = _storeModelItem
 
     fun getOneData(id : Int){
-        viewModelScope.launch {
-            _storeModelItem.value = apiUseCase.getOneData(id)
+        CoroutineScope(Dispatchers.Main).launch {
+            try {
+                _storeModelItem.value = apiUseCase.getOneData(id)
+            }catch (e : Exception){
+                Log.e(" Detail viewModel getOneData error:", e.localizedMessage)
+            }
         }
     }
 
     fun insert(id: Int){
-        viewModelScope.launch {
+        CoroutineScope(Dispatchers.Main).launch {
             databaseUseCase.insert(StoreEntity(id))
         }
     }

@@ -3,7 +3,6 @@ package com.example.fakestore.Data.remote.Repository
 import com.example.fakestore.Data.remote.Api.IStoreApi
 import com.example.fakestore.Data.remote.Model.StoreModel
 import com.example.fakestore.Data.remote.Model.StoreModelItem
-import retrofit2.Response
 import javax.inject.Inject
 
 class StoreApiRespositoryImpl @Inject constructor(

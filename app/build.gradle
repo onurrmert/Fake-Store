@@ -5,9 +5,6 @@ plugins {
     //dagger hilt
     id 'kotlin-kapt'
     id 'com.google.dagger.hilt.android'
-
-    //navigation
-    id 'androidx.navigation.safeargs.kotlin'
 }
 
 android {
@@ -55,17 +52,6 @@ android {
     kapt {
         correctErrorTypes true
     }
-
-    // navigation
-    buildscript {
-        repositories {
-            google()
-        }
-        dependencies {
-            //def nav_version = "2.5.3"
-            classpath "androidx.navigation:navigation-safe-args-gradle-plugin:2.5.3"
-        }
-    }
 }
 
 dependencies {
@@ -93,10 +79,6 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
-    //Kotlin navigation
-    implementation "androidx.navigation:navigation-fragment-ktx:2.5.3"
-    implementation "androidx.navigation:navigation-ui-ktx:2.5.3"
-
     //cardview
     implementation "androidx.cardview:cardview:1.0.0"
 
@@ -108,4 +90,7 @@ dependencies {
     annotationProcessor "androidx.room:room-compiler:2.5.1"
     implementation 'androidx.room:room-ktx:2.5.1'
     kapt "androidx.room:room-compiler:2.5.1"
+
+    //notification
+    implementation "androidx.core:core:1.6.8"
 }

@@ -29,7 +29,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         viewPager()
-
         tabLayout()
     }
 

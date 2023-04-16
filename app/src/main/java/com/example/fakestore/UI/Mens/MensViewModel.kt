@@ -3,10 +3,8 @@ package com.example.fakestore.UI.Mens
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.example.fakestore.Data.remote.Model.StoreModel
 import com.example.fakestore.Domain.StoreApiUseCase
-import com.example.fakestore.Util.Constant
 import com.example.fakestore.Util.Constant.Companion.MensUrl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
@@ -27,8 +25,8 @@ class MensViewModel @Inject constructor(
         getMen()
     }
 
-    fun getMen(){
-        viewModelScope.launch {
+    private fun getMen(){
+        CoroutineScope(Dispatchers.Main).launch {
             try {
                 _storeModelItem.value = storeApiUseCase.getCategory(MensUrl)
             }catch (e : Exception){

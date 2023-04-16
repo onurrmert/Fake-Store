@@ -22,12 +22,14 @@ class ProductActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityProductBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        supportActionBar.apply {
+            this?.title = "Product List"
+        }
         getData()
     }
 
     private fun getData(){
-        viewModel.storeModelItemList.observe(this@ProductActivity, {
-            item->
+        viewModel.storeModelItemList.observe(this@ProductActivity, { item->
             if (item.size > 0){
                 goneAnim()
                 binding.recyclerView.layoutManager = GridLayoutManager(this@ProductActivity, 2)

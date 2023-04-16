@@ -1,20 +1,19 @@
 package com.example.fakestore.Util
 
-import android.Manifest
+import android.annotation.SuppressLint
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.net.ConnectivityManager
+import android.content.res.Resources
+import android.graphics.BitmapFactory
+import android.os.Build
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
-import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
-import androidx.core.app.NotificationManagerCompat
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.LifecycleOwner
-import com.example.fakestore.Data.remote.Model.StoreModel
-import com.example.fakestore.Data.remote.Model.StoreModelItem
 import com.example.fakestore.R
 import com.example.fakestore.UI.Product.ProductActivity
 
@@ -38,19 +37,8 @@ class Extension {
                 })
         }
 
-        fun Context.connectionControl() : Boolean{
-            val manager =
-                this.applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-            val networkInfo = manager.activeNetworkInfo
-
-            if (networkInfo == null) {
-                return false// is not connect internet
-            }else{
-                return true// connect internet
-            }
-        }
-
-        private fun notificationBuilder(context: Context) : NotificationCompat.Builder{
+        @SuppressLint("UnspecifiedImmutableFlag")
+        private fun notificationBuilder(context: Context, resources: Resources) : NotificationCompat.Builder{
 
             val fullScreenIntent = Intent(context, ProductActivity::class.java)
 
@@ -62,28 +50,26 @@ class Extension {
                 .setContentTitle("Fake Store")
                 .setContentText("Product added to cart")
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setLargeIcon(BitmapFactory.decodeResource(resources, R.drawable.baseline_shopping_cart_24))
                 .setContentIntent(fullScreenPendingIntent)
         }
 
-        fun Context.sendNotification(){
-            with(NotificationManagerCompat.from(this)) {
-                if (ActivityCompat.checkSelfPermission(
-                        this@sendNotification,
-                        Manifest.permission.POST_NOTIFICATIONS
-                    ) != PackageManager.PERMISSION_GRANTED
-                ) {
-                    return@with
-                }
-                notify(1234, notificationBuilder(this@sendNotification).build())
+
+        fun Context.sendNotification(resources: Resources){
+            val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                val notificationChannel = NotificationChannel("channelId", "description", NotificationManager.IMPORTANCE_HIGH)
+                notificationChannel.enableLights(true)
+                notificationChannel.enableVibration(false)
+
+                notificationManager.createNotificationChannel(notificationChannel)
+
+                notificationBuilder(this, resources)
+            } else {
+                notificationBuilder(this, resources)
             }
-        }
-
-        fun Context.sortDesc(storeModel : StoreModel) : List<StoreModelItem>{
-            return storeModel.sortedByDescending { it.price }
-        }
-
-        fun Context.sortAsc(storeModel : StoreModel) : List<StoreModelItem>{
-            return storeModel.sortedBy { it.price }
+            notificationManager.notify(1234, notificationBuilder(this, resources).build())
         }
     }
 }

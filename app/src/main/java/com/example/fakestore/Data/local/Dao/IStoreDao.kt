@@ -14,6 +14,5 @@ interface IStoreDao {
     suspend fun insert(storeModel: StoreEntity)
 
     @Query("SELECT * FROM storeTable")
-    @NotNull
     suspend fun getAll() : List<StoreEntity>
 }

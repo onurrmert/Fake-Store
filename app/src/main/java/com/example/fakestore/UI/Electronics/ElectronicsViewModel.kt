@@ -3,10 +3,8 @@ package com.example.fakestore.UI.Electronics
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.example.fakestore.Data.remote.Model.StoreModel
 import com.example.fakestore.Domain.StoreApiUseCase
-import com.example.fakestore.Util.Constant
 import com.example.fakestore.Util.Constant.Companion.ElectricUrl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
@@ -27,8 +25,8 @@ class ElectronicsViewModel @Inject constructor(
         getElectronics()
     }
 
-    fun getElectronics(){
-        viewModelScope.launch {
+    private fun getElectronics(){
+        CoroutineScope(Dispatchers.Main).launch {
             try {
                 _storeModelItem.value = storeApiUseCase.getCategory(ElectricUrl)
             }catch (e : Exception){

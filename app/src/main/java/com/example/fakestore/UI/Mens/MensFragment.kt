@@ -44,8 +44,7 @@ class MensFragment : Fragment() {
     }
 
     private fun initRecycler(){
-        viewModel.storeModelItem.observe(viewLifecycleOwner, {
-                item->
+        viewModel.storeModelItem.observe(viewLifecycleOwner, { item->
             if (item.size > 0){
                 recyclerClick(item)
                 binding.animateToStart.visibility = View.GONE

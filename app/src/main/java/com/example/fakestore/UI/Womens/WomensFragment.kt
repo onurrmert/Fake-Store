@@ -12,10 +12,7 @@ import com.example.fakestore.Data.remote.Model.StoreModel
 import com.example.fakestore.UI.Adapter.RecyclerView.IOnItemClick
 import com.example.fakestore.UI.Adapter.RecyclerView.MyRecyclerAdapter
 import com.example.fakestore.UI.Detail.DetailActivity
-import com.example.fakestore.Util.Extension
 import com.example.fakestore.Util.Extension.Companion.backpress
-import com.example.fakestore.Util.Extension.Companion.connectionControl
-import com.example.fakestore.Util.Extension.Companion.toast
 import com.example.fakestore.databinding.FragmentWomensBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -25,7 +22,6 @@ class WomensFragment : Fragment() {
     private lateinit var binding: FragmentWomensBinding
 
     private val viewModel by lazy {
-
         ViewModelProvider(this, defaultViewModelProviderFactory).get(WomenViewModel::class.java)
     }
 
@@ -58,8 +54,7 @@ class WomensFragment : Fragment() {
     }
 
     private fun initRecycler(){
-        viewModel.storeModelItem.observe(viewLifecycleOwner, {
-                item->
+        viewModel.storeModelItem.observe(viewLifecycleOwner, { item->
             if (item.size > 0){
                 recyclerClick(item)
                 goneAnim()

@@ -55,8 +55,7 @@ class ElectronicsFragment : Fragment() {
     }
 
     private fun initRecycler(){
-        viewModel.storeModelItem.observe(viewLifecycleOwner, {
-                item->
+        viewModel.storeModelItem.observe(viewLifecycleOwner, { item->
             if (item.size > 0){
                 recyclerClick(item)
                 goneAnim()
