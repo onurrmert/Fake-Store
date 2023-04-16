@@ -1,5 +1,6 @@
 package com.example.fakestore.UI.Product
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -16,18 +17,23 @@ class ProductViewModel @Inject constructor(
     private val databaseUseCase: DatabaseUseCase
 ): ViewModel() {
 
-    private val _storeModelItem = MutableLiveData<List<StoreModelItem>>()
-    val storeModelItemList : MutableLiveData<List<StoreModelItem>> get() = _storeModelItem
+    val storeModelItemList = MutableLiveData<List<StoreModelItem>>()
 
     init {
         getData()
     }
 
     private fun getData(){
+        val storeItemList = ArrayList<StoreModelItem>()
         viewModelScope.launch {
             databaseUseCase.getAll().forEach {
-                _storeModelItem.value = listOf(apiUseCase.getOneData(it.idStore!!))
+               try {
+                   storeItemList.add(apiUseCase.getOneData(it.idStore!!))
+               }catch (e: java.lang.Exception){
+                   Log.e("product view model getData: ", e.localizedMessage)
+               }
             }
+            storeModelItemList.value = storeItemList
         }
     }
 }
