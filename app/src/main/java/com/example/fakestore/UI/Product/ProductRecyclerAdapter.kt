@@ -5,12 +5,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.fakestore.Data.local.Entity.StoreEntity
 import com.example.fakestore.Data.remote.Model.StoreModelItem
 import com.example.fakestore.R
+import com.example.fakestore.UI.Adapter.RecyclerView.IOnItemClick
 import com.example.fakestore.databinding.RecyclerRowsBinding
 
 class ProductRecyclerAdapter (
-    private val storeModelItemList: List<StoreModelItem>
+    private val storeModelItemList: List<StoreModelItem>,
+    private val storeEntity: List<StoreEntity>,
+    private val listener : IOnItemClick
         ) : RecyclerView.Adapter<ProductRecyclerAdapter.ProductViewHolder>(){
 
     class ProductViewHolder(view : View) : RecyclerView.ViewHolder(view){
@@ -31,11 +35,15 @@ class ProductRecyclerAdapter (
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         holder.binding.textTitle.setText(storeModelItemList.get(position).title)
-        holder.binding.textPrice.text = "Price: ${storeModelItemList.get(position).price}"
+        holder.binding.textPrice.text = "Price: ${storeModelItemList.get(position).price}$"
 
         Glide.with(holder.itemView.context)
             .load(storeModelItemList.get(position).image)
             .error(R.drawable.ic_launcher_foreground)
             .into(holder.binding.imageView)
+
+        holder.binding.recyclerRow.setOnClickListener {
+            listener.itemClick(storeEntity.get(position).id)
+        }
     }
 }

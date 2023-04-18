@@ -38,24 +38,25 @@ class Extension {
         }
 
         @SuppressLint("UnspecifiedImmutableFlag")
-        private fun notificationBuilder(context: Context, resources: Resources) : NotificationCompat.Builder{
+        private fun notificationBuilder(
+            context: Context, resources: Resources, message: String
+        ) : NotificationCompat.Builder{
 
             val fullScreenIntent = Intent(context, ProductActivity::class.java)
 
             val fullScreenPendingIntent = PendingIntent.getActivity(context, 0,
                 fullScreenIntent, PendingIntent.FLAG_UPDATE_CURRENT)
 
-           return  NotificationCompat.Builder(context, "channelId")
+            return  NotificationCompat.Builder(context, "channelId")
                 .setSmallIcon(R.drawable.baseline_shopping_cart_24)
                 .setContentTitle("Fake Store")
-                .setContentText("Product added to cart")
+                .setContentText(message)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setLargeIcon(BitmapFactory.decodeResource(resources, R.drawable.baseline_shopping_cart_24))
                 .setContentIntent(fullScreenPendingIntent)
         }
 
-
-        fun Context.sendNotification(resources: Resources){
+        fun Context.sendNotification(resources: Resources, message: String){
             val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -65,11 +66,11 @@ class Extension {
 
                 notificationManager.createNotificationChannel(notificationChannel)
 
-                notificationBuilder(this, resources)
+                notificationBuilder(this, resources, message)
             } else {
-                notificationBuilder(this, resources)
+                notificationBuilder(this, resources, message)
             }
-            notificationManager.notify(1234, notificationBuilder(this, resources).build())
+            notificationManager.notify(1234, notificationBuilder(this, resources, message).build())
         }
     }
 }

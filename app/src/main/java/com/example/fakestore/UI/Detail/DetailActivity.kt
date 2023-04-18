@@ -44,7 +44,7 @@ class DetailActivity : AppCompatActivity() {
             this.setMessage("Do you want to add product to cart?")
             this.setPositiveButton("Yes", { dialog, which ->
                 viewModel.insert(getID())
-                this@DetailActivity.sendNotification(this@DetailActivity.resources)
+                this@DetailActivity.sendNotification(this@DetailActivity.resources, "Product added to cart")
             })
         }.show()
     }

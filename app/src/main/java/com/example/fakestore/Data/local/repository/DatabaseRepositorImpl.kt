@@ -15,4 +15,8 @@ class DatabaseRepositorImpl @Inject constructor(
     override suspend fun getAll(): List<StoreEntity> {
         return storeDao.getAll()
     }
+
+    override suspend fun delete(id: Int) {
+        storeDao.delete(id)
+    }
 }

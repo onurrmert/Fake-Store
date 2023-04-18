@@ -15,4 +15,8 @@ class DatabaseUseCase @Inject constructor(
     suspend fun getAll() : List<StoreEntity>{
         return repository.getAll()
     }
+
+    suspend fun delete(id : Int){
+        repository.delete(id)
+    }
 }

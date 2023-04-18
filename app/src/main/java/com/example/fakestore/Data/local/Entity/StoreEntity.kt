@@ -12,7 +12,6 @@ data class StoreEntity(
 
     @ColumnInfo(name = "idStore")
     val idStore: Int?,
-
 ){
     constructor(idStore: Int?) : this(0, idStore)
 }

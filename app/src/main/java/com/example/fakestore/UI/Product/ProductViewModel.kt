@@ -3,6 +3,7 @@ package com.example.fakestore.UI.Product
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.fakestore.Data.local.Entity.StoreEntity
 import com.example.fakestore.Data.remote.Model.StoreModelItem
 import com.example.fakestore.Domain.DatabaseUseCase
 import com.example.fakestore.Domain.StoreApiUseCase
@@ -20,8 +21,13 @@ class ProductViewModel @Inject constructor(
 
     val storeModelItemList = MutableLiveData<List<StoreModelItem>>()
 
+    private val _storeEntity = MutableLiveData<List<StoreEntity>>()
+
+    val storeEntity : MutableLiveData<List<StoreEntity>> get() = _storeEntity
+
     init {
         getData()
+        getStoreEntityList()
     }
 
     private fun getData(){
@@ -35,6 +41,19 @@ class ProductViewModel @Inject constructor(
                }
             }
             storeModelItemList.value = storeItemList
+        }
+    }
+
+    private fun getStoreEntityList(){
+        CoroutineScope(Dispatchers.Main).launch {
+            _storeEntity.value = databaseUseCase.getAll()
+        }
+    }
+
+    fun delete(id : Int){
+        CoroutineScope(Dispatchers.Main).launch {
+            databaseUseCase.delete(id)
+            getData()
         }
     }
 }

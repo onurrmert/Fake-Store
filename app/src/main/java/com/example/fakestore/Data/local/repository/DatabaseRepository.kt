@@ -7,4 +7,6 @@ interface DatabaseRepository {
     suspend fun insert(storeEntity: StoreEntity)
 
     suspend fun getAll() : List<StoreEntity>
+
+    suspend fun delete(id : Int)
 }

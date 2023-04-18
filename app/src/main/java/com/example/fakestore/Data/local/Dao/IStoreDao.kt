@@ -15,4 +15,7 @@ interface IStoreDao {
 
     @Query("SELECT * FROM storeTable")
     suspend fun getAll() : List<StoreEntity>
+
+    @Query("DELETE FROM storeTable WHERE id=:id")
+    suspend fun delete(id : Int)
 }
